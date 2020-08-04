@@ -7,11 +7,11 @@ import styles from '../../common/styles'
 // import echarts from 'echarts/lib/echarts'
 let echarts = require('echarts')
 //导入
-import 'echarts/lib/chart/wordCloud';
+// import 'echarts/lib/chart/wordCloud';
 import ReactEcharts from 'echarts-for-react';
 
 
-const { Button, Dropdown, Icon,Text } = UI
+const { Button, Dropdown, Icon,Text,Tag } = UI
 const window = Dimensions.get('window')
 
 
@@ -19,6 +19,7 @@ export default class IllegalDetect extends Component {
   constructor (p) {
     super(p)
     this.state = {
+        comment:"良好"
     }
   }
 
@@ -124,16 +125,25 @@ export default class IllegalDetect extends Component {
   }
 
 
-
   render () {
     if (this.props.display){
       return (
-          <div>
+          <div >
             {/* <p>词云区</p> */}
           {/* <p>状态区</p> */}
-          <ReactEcharts option={this.getOption2()} theme="Imooc"  style={{height:'400px'}}/>
-          <Button type='info' size='sm' disabled> 信息 info</Button>
-
+          {/* <ReactEcharts option={this.getOption2()} theme="Imooc"  style={{height:'400px'}}/> */}
+          {/* <p></p> */}
+          <Tag style={{ marginRight: 5, marginBottom: 5, borderRadius: 11 }} type='primary' textColorInverse>统计情况</Tag>          
+        {/* <div>展示违规词出现词云</div> */}
+        <div>{
+                    this.props.illegalWordsList.map((item, index) => {
+                        return <div key={index}>{item}</div>
+                    })
+                }
+        </div>
+        
+          <Tag style={{ marginRight: 5, marginBottom: 5, borderRadius: 11 }} type='primary' textColorInverse>表现评价</Tag>          
+            <Button type='info' size='sm' disabled> 当前表现情况：{this.state.comment}</Button>
           </div>
         )
     }else{
