@@ -165,8 +165,14 @@ export default class HotWordRecommend extends Component {
   }
 
   addHotWord(){
+    console.log(hotwordAddedName)
+    console.log('热词添加')
     let streamerRoomId = this.props.info.streamerRoomId
     let hotwordAddedName = this.state.hotwordAddedName
+    if(hotwordAddedName==""){
+        Tip.show('请输入非空的热词~')
+        return 0
+    }
     let args = [] 
     args[1] = {};
     args[1].url = myurl+'addHotWord';

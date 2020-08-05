@@ -381,7 +381,7 @@ updateIllegalWordsList(){
   hyExt.logger.info('获取当前主播订阅概况失败，错误信息：' + err.message)
 })
 
-    }, 300000);
+    }, 2000);
   }
   test(){
     // let args = []
