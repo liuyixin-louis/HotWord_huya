@@ -165,7 +165,7 @@ export default class IllegalDetect extends Component {
               <View className = "header" style={{}}>
               <Button onPress={() => {
               Tip.show('(╥﹏╥)o对不起，暂未开放主播端查看系统预设违规词，\n如需了解请咨询客服邮箱zxcxzcz@qq.com', 5000,  true,'center')
-            }} type="primary" size="sm" textColorInverse style={[ { borderRadius: 50,marginRight:"5px" }]}>             查看系统后台预设违规词列表            </Button>
+            }} type="primary" size="sm" textColorInverse style={[ { borderRadius: 50,marginRight:"5px" }]}>           查看系统后台预设违规词列表         </Button>
 <Icon type='question-circle' tintColor='#fff' size={30} style={{marginRight:"10px" }}></Icon>
 
                 </View>
@@ -177,7 +177,7 @@ export default class IllegalDetect extends Component {
               size='sm'
               textColorInverse
               >
-              <Icon type='camera-o' tintColor='#fff'></Icon>
+              <Icon type='users-o' tintColor='#fff'></Icon>
               <Text style={{color:"#fff"}}>违规统计</Text>
               
             </Button>
@@ -203,7 +203,7 @@ export default class IllegalDetect extends Component {
               size='sm'
               textColorInverse
               >
-              <Icon type='camera-o' tintColor='#fff'></Icon>
+              <Icon type='edit-o' tintColor='#fff'></Icon>
               <Text style={{color:"#fff"}}>表现评价</Text>
             </Button>
         </View>

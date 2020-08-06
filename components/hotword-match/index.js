@@ -225,7 +225,7 @@ export default class HotWordMatch extends Component {
           console.log(err.message);
         });
     }else{
-      Tip.show(' 请选择监听词和日期~')
+      Tip.show('请选择特定的监听词和日期！')
       return 0
     }
     
@@ -367,7 +367,7 @@ export default class HotWordMatch extends Component {
               size='sm'
               textColorInverse
               >
-              <Icon type='check' tintColor='#fff'></Icon>
+              <Icon type='edit-o' tintColor='#fff'></Icon>
               <Text style={{color:"#fff"}}>相似度报告</Text>
               
             </Button>
