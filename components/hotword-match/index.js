@@ -350,7 +350,7 @@ export default class HotWordMatch extends Component {
             </View>
         </View> */}
         
-        <ReactEcharts  option={this.getOption()} theme="Imooc"  style={{height:'300px',marginLeft:"20px",marginRight:"20px",marginTop:"0px"}}/>
+        <ReactEcharts  option={this.getOption()} theme="Imooc"  style={{height:'260px',marginLeft:"20px",marginRight:"20px",marginTop:"0px"}}/>
 
 
         <View className="plotLineChart">
