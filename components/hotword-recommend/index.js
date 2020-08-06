@@ -166,8 +166,12 @@ export default class HotWordRecommend extends Component {
   }
 
   addHotWord(){
-    console.log(hotwordAddedName)
+    // console.log(hotwordAddedName)
     console.log('热词添加')
+    if(this.props.hotwords.length>=8){
+        Tip.show('目前仅支持添加至多8个热词！')
+        return 0
+    }
     let streamerRoomId = this.props.info.streamerRoomId
     let hotwordAddedName = this.state.hotwordAddedName
     if(hotwordAddedName==""){
@@ -191,7 +195,9 @@ export default class HotWordRecommend extends Component {
           console.log(err.message);
           Tip.show('呜呜呜，添加失败~')
         });
-      
+
+
+      this.props.update();
   }
 
 

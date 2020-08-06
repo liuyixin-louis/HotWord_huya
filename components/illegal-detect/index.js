@@ -33,7 +33,7 @@ export default class IllegalDetect extends Component {
   constructor (p) {
     super(p)
     this.state = {
-        comment:"未知"
+        comment:"优秀"
     }
   }
 
@@ -42,18 +42,18 @@ export default class IllegalDetect extends Component {
   }
 
   computeComment(){
-      if(this.state.comment!='未知'){
-        var l = this.props.illegalWordsList;
-        var score = 0;
-      for(j = 0; j < l.length; j++) {
-      if (l[j].includes('99')){
-          score = 1;
-          break;
-      }
-      }
-      var newcomment = score==1?'良好':'优秀';
+      if(this.state.illegalWordsList!=[]){
+    //     var l = this.props.illegalWordsList;
+    //     var score = 0;
+    //   for(j = 0; j < l.length; j++) {
+    //   if (l[j].includes('99')){
+    //       score = 1;
+    //       break;
+    //   }
+    //   }
+    //   var newcomment = score==1?'良好':'优秀';
       this.setState({
-          comment:newcomment
+          comment:'良好'
       })
       }
      

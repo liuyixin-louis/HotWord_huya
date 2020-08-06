@@ -455,7 +455,7 @@ updateIllegalWordsList(){
             <Text>asdasd</Text>
           </View> */}
       <HotWordMatch word_data = {this.state.word_data} hotwords={this.state.hotwords} info={this.state.streamerInfo} display={showList[0]} ></HotWordMatch>
-      <HotWordRecommend hotwords={this.state.hotwords} info={this.state.streamerInfo} display={showList[1]}></HotWordRecommend>
+      <HotWordRecommend update = {this.updateData} hotwords={this.state.hotwords} info={this.state.streamerInfo} display={showList[1]}></HotWordRecommend>
       <IllegalDetect illegalWordsList={this.state.illegalWordsList} info={this.state.streamerInfo} display={showList[2]}></IllegalDetect>
       {/* <Button onPress={() => { this.test() }} ></Button> */}
       <Tab
