@@ -1,0 +1,70 @@
+.search{
+      width: 100%;
+    height: 100px;
+    padding: 35px 35px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+  margin-top: 5px;
+  marign-left:40px;
+}
+
+
+.inputcomb{
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.functionTitle{
+width: 100%;
+  height: 100px;
+  background:#373634;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left:40px;
+}
+
+
+.AddedrOuter{
+  padding-top: 5px;
+  align-items: center;
+}
+
+.AddedInner{
+ height: 500px;
+  width: 650px;
+    margin-left:25px;
+    margin-right:25px;
+  margin-bottom: 40px;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  
+  background-image:url(https://picbed-1301760901.cos.ap-guangzhou.myqcloud.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200807021635.png) ;
+  background:#FAE6B3;
+  }
+
+
+  .RecommendedrOuter{
+  align-items: center;
+}
+
+.RecommendedrInner{
+ height: 200px;
+  width: 650px;
+    margin-left:25px;
+    margin-right:25px;
+  margin-bottom: 40px;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  
+  background-image:url(https://picbed-1301760901.cos.ap-guangzhou.myqcloud.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200807022552.png) ;
+  background:#FAE6B3;
+  }

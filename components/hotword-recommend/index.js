@@ -8,6 +8,7 @@ let echarts = require('echarts')
 //导入
 // import 'echarts/lib/chart/wordCloud';
 
+import "./index.hycss"
 
 import styles from '../../common/styles'
 import ReactEcharts from 'echarts-for-react';
@@ -199,13 +200,86 @@ export default class HotWordRecommend extends Component {
         return (
             // <p>词云区</p>
             <div >
-                <Input value={this.state.hotwordAddedName} placeholder='请输入要添加监听的词' onChange={(value) => {
+                <View className = "search" style={{}}>
+<View className="inputcomb">
+<Icon type='plus-circle-o' tintColor='#fff' size={30} style={{marginRight:"10px" }}></Icon>
+<Input 
+style={{borderRadius: 11,width:"230px"}}
+value={this.state.hotwordAddedName} placeholder='    加入热词' onChange={(value) => {
               this.setState({
                 hotwordAddedName: value
               })
             }} />
-        {/* <Button type="success" size="md" textColorInverse onPress={() => { this.addHotWord()}}>加入 </Button> */}
+</View>
+
+<Button
+              style={[componentStyles.spacingH, { borderRadius: 50 }]}
+              type='warning'
+              size='sm'
+              textColorInverse
+              onPress={() => {
+                this.addHotWord()
+              }}
+              >
+              {/* <Icon type='search' tintColor='#fff'></Icon> */}
+              <Text style={{color:"#fff"}}>加入</Text>
+              
+            </Button>
+                </View>
+                
+
+
+
+                <View className="functionTitle">
+        {/* <Tag style={{ marginRight: 5, marginBottom: 5, borderRadius: 11,backgroundColor: '#F49D18',borderColor: '#FDF5E6' }} type='warning' textColorInverse>统计曲线</Tag> */}
         <Button
+              style={[componentStyles.spacingH, { borderRadius: 50 }]}
+              type='warning'
+              size='sm'
+              textColorInverse
+              >
+              <Icon type='check' tintColor='#fff'></Icon>
+              <Text style={{color:"#fff"}}> 已添加</Text>
+            </Button>
+        </View>
+
+<View className="AddedrOuter">
+<View className="AddedInner">
+<View>{
+                    this.props.hotwords.map((item, index) => {
+                        return <Text key={index}>{item}  </Text>
+                    })
+                }
+        </View>
+</View>
+</View>
+
+<View className="functionTitle">
+        {/* <Tag style={{ marginRight: 5, marginBottom: 5, borderRadius: 11,backgroundColor: '#F49D18',borderColor: '#FDF5E6' }} type='warning' textColorInverse>统计曲线</Tag> */}
+        <Button
+              style={[componentStyles.spacingH, { borderRadius: 50 }]}
+              type='warning'
+              size='sm'
+              textColorInverse
+              >
+              <Icon type='star' tintColor='#fff'></Icon>
+              <Text style={{color:"#fff"}}>近期热词</Text>
+            </Button>
+        </View>
+
+<View className="RecommendedrOuter">
+<View className="RecommendedrInner">
+<View><Text>{
+                    this.state.recommendWords.map((item, index) => {
+                        return item+";"
+                    })
+                }</Text>
+        </View>
+</View>
+</View>
+
+        {/* <Button type="success" size="md" textColorInverse onPress={() => { this.addHotWord()}}>加入 </Button> */}
+        {/* <Button
               style={[componentStyles.spacingH, { borderRadius: 50 }]}
               type='primary'
               size='md'
@@ -217,24 +291,19 @@ export default class HotWordRecommend extends Component {
               加入
             </Button>
 
-        <Tag style={{ marginRight: 5, marginBottom: 5, borderRadius: 11 }} type='primary' textColorInverse>已添加</Tag>          
+        <Tag style={{ marginRight: 5, marginBottom: 5, borderRadius: 11 }} type='primary' textColorInverse>已添加</Tag>           */}
         {/* <div>用户对应的热词列表展示:</div> */}
-        <div>{
-                    this.props.hotwords.map((item, index) => {
-                        return <div key={index}>{item}</div>
-                    })
-                }
-        </div>
+        
 
-        <Tag style={{ marginRight: 5, marginBottom: 5, borderRadius: 11 }} type='primary' textColorInverse>近期热词推荐</Tag>          
+        {/* <Tag style={{ marginRight: 5, marginBottom: 5, borderRadius: 11 }} type='primary' textColorInverse>近期热词推荐</Tag>           */}
         {/* <div>当前系统推荐热词列表展示</div>
          */}
-        <div>{
+        {/* <div>{
                     this.state.recommendWords.map((item, index) => {
                         return <div key={index}>{item}</div>
                     })
                 }
-        </div>
+        </div> */}
 
             </div>
             

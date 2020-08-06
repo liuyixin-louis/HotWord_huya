@@ -17,7 +17,7 @@ let myurl = 'http://175.24.20.4:8000/'
 import './app.hycss'
 
 
-const { View, Text,Dropdown,Button,Icon ,Tip,Tab} = UI
+const { View, Text,Dropdown,Button,Icon ,Tip,Tab,Image} = UI
 
 class App extends Component {
 
@@ -425,8 +425,40 @@ updateIllegalWordsList(){
 
     return (
       <div className="app">
-        {/* helloworld */}
-        <Tab
+        {/* <View className="header">
+        <Image
+          className="anchor-avatar"
+          mode="cover"
+          src="https://04imgmini.eastday.com/mobile/20200806/20200806081545_16d76acfbfb7566bed4f671ea55e0886_1.png"
+        ></Image>
+        <View className="anchor-info">
+          <Text className="anchor-name">名字</Text>
+          <Text className="anchor-id">Id</Text>
+        </View>
+      </View>
+      <Text className="clock">time</Text>
+      <View className="weather-contain">
+          <View className="contain-left">
+            <Clock />
+            <Text className="date">时间</Text>
+          </View>
+          <View className="contain-right">
+            <Text className="daily-time">日常时间</Text>
+            <Text className="temperature">温度</Text>
+            <Text className="weather">天气
+            </Text>
+          </View>
+        </View> */}
+
+        
+        {/* <View className='ConditionSelect'>
+            <Text>asdasd</Text>
+          </View> */}
+      <HotWordMatch word_data = {this.state.word_data} hotwords={this.state.hotwords} info={this.state.streamerInfo} display={showList[0]} ></HotWordMatch>
+      <HotWordRecommend hotwords={this.state.hotwords} info={this.state.streamerInfo} display={showList[1]}></HotWordRecommend>
+      <IllegalDetect illegalWordsList={this.state.illegalWordsList} info={this.state.streamerInfo} display={showList[2]}></IllegalDetect>
+      {/* <Button onPress={() => { this.test() }} ></Button> */}
+      <Tab
           value={this.state.value}
           data={this.state.funcList}
           onChange={item => this.handleChangeTab('value', item.value)}
@@ -434,10 +466,6 @@ updateIllegalWordsList(){
             background: "#F6D67F"
           }}
         />
-      <HotWordMatch word_data = {this.state.word_data} hotwords={this.state.hotwords} info={this.state.streamerInfo} display={showList[0]} ></HotWordMatch>
-      <HotWordRecommend hotwords={this.state.hotwords} info={this.state.streamerInfo} display={showList[1]}></HotWordRecommend>
-      <IllegalDetect illegalWordsList={this.state.illegalWordsList} info={this.state.streamerInfo} display={showList[2]}></IllegalDetect>
-      {/* <Button onPress={() => { this.test() }} ></Button> */}
       </div>
     )
   }

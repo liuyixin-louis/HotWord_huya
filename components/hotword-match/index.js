@@ -5,6 +5,8 @@ import { UI } from '@hyext/hy-ui'
 // import styles from '../../common/styles'
 import variables from '../../customTheme'
 
+// 样式文件
+import "./index.hycss"
 
 //下面是按需加载
 // import echarts from 'echarts/lib/echarts'
@@ -95,6 +97,17 @@ export default class HotWordMatch extends Component {
 
   getOption =()=> {
     let option = {
+      // backgroundColor: {
+      //   type: "pattern",
+      //   repeat: "repeat",
+      //   image: "" // 赋值
+      //   },
+      backgroundColor:"#FAE6B3",borderRadius: 11,borderColor: '#FDF5E6',
+      tooltip:{
+        borderColor: '#333',            // 提示边框颜色
+    borderRadius: 4,                // 提示边框圆角，单位px，默认为4
+    borderWidth: 0,                // 提示边框线宽，单位px，默认为0（无边框）
+      },
       title:{
         text:'词激活数与订阅数的时序统计曲线',
         x:'center'
@@ -222,8 +235,54 @@ export default class HotWordMatch extends Component {
     if (this.props.display){
       return (
           <div className='tongji'>
-        <View className='shaixuan'>
-          <View >
+
+          <View className='ConditionSelect'>
+            
+          <Button onPress={() => { this.BottomModal.open() }} type="primary" size='sm'
+          // style={[componentStyles.spacingH, componentStyles.spacingV]}
+          style={[ { borderRadius: 50,marginLeft:"15px" }]}
+          >
+          <Text style={{color:"#000000"}}>{this.state.date_selected}</Text>
+          <Icon type='angle-down' tintColor='#fff'></Icon>
+          </Button>
+
+          <Button type="primary" 
+            testID='a1'
+            style={[ { borderRadius: 50 }]}
+            // style={[componentStyles.spacingH, componentStyles.spacingV]}
+            size='sm'
+            ref={(c) => {
+              this.btnEl = c
+            }}
+            onPress={() => {
+              this.open(this.btnEl, this.dropdown, {
+                xKey: 'offsetX',
+                yKey: 'offsetY'
+              })
+            }}>
+              
+          <Text style={{color:"#000000"}}>{this.state.currentwordname}</Text>
+          <Icon type='angle-down' tintColor='#fff'></Icon>
+          </Button>
+          
+
+          <Button
+              style={[componentStyles.spacingH, { borderRadius: 50 }]}
+              type='warning'
+              size='sm'
+              textColorInverse
+              onPress={() => {
+                this.shaixuan()
+              }}
+              >
+              <Icon type='search' tintColor='#fff'></Icon>
+              <Text style={{color:"#fff"}}>         查询          </Text>
+              
+            </Button>
+
+
+          </View>
+
           <Dropdown  id='shaici' 
             ref={(c) => {
               this.dropdown = c
@@ -235,11 +294,10 @@ export default class HotWordMatch extends Component {
             data={this.props.word_data}
             onChange={this.handleChange}
           />
-          </View>
+        <View className='shaixuan'>
         
         <View>
-        <Button onPress={() => { this.BottomModal.open() }}>
-          <Text>{this.state.date_selected}</Text></Button>
+        
         <BottomModal
           ref={(c) => { this.BottomModal = c }}
           title='选择日期'
@@ -263,52 +321,70 @@ export default class HotWordMatch extends Component {
           >
           </Datepicker>
         </BottomModal>
-        <Button
-            testID='a1'
-            style={{ marginTop: 12 }}
-            size='sm'
-            ref={(c) => {
-              this.btnEl = c
-            }}
-
-            onPress={() => {
-              this.open(this.btnEl, this.dropdown, {
-                xKey: 'offsetX',
-                yKey: 'offsetY'
-              })
-            }}>
-            {this.state.currentwordname}
-          </Button>
-        </View>
-        <Button
-              style={[componentStyles.spacingH, { borderRadius: 50 }]}
-              type='primary'
-              size='md'
-              textColorInverse
-              onPress={() => {
-                this.shaixuan()
-              }}
-              >
-              查询
-            </Button>
-
+        
         </View>
         
 
-
-
+        </View>
+        
           
-          
-        <Tag style={{ marginRight: 5, marginBottom: 5, borderRadius: 11 }} type='primary' textColorInverse>统计曲线</Tag>
-  <ReactEcharts option={this.getOption()} theme="Imooc"  style={{height:'400px'}}/>
+        <View className="functionTitle">
+        {/* <Tag style={{ marginRight: 5, marginBottom: 5, borderRadius: 11,backgroundColor: '#F49D18',borderColor: '#FDF5E6' }} type='warning' textColorInverse>统计曲线</Tag> */}
+        <Button
+              style={[componentStyles.spacingH, { borderRadius: 50 }]}
+              type='warning'
+              size='sm'
+              textColorInverse
+              >
+              <Icon type='camera-o' tintColor='#fff'></Icon>
+              <Text style={{color:"#fff"}}>统计曲线</Text>
+              
+            </Button>
+        </View>
+
+        {/* <View className="plotLineChartOuter">
+        <View className="plotLineChartInner">
+            <View className="borderWhilteLine">
+            </View>
+            
+            </View>
+        </View> */}
+        
+        <ReactEcharts  option={this.getOption()} theme="Imooc"  style={{height:'300px',marginLeft:"20px",marginRight:"20px",marginTop:"0px"}}/>
 
 
-  <Tag style={{ marginRight: 5, marginBottom: 5, borderRadius: 11 }} type='primary' textColorInverse>相似度检测</Tag>          
+        <View className="plotLineChart">
+
+        </View>
+
+  <View className="functionTitle">
+        {/* <Tag style={{ marginRight: 5, marginBottom: 5, borderRadius: 11,backgroundColor: '#F49D18',borderColor: '#FDF5E6' }} type='warning' textColorInverse>相似度报告</Tag> */}
+        <Button
+              style={[componentStyles.spacingH, { borderRadius: 50 }]}
+              type='warning'
+              size='sm'
+              textColorInverse
+              >
+              <Icon type='check' tintColor='#fff'></Icon>
+              <Text style={{color:"#fff"}}>相似度报告</Text>
+              
+            </Button>
+        </View> 
+             
           <View>
-          <Text>词激活数与订阅增量的相关系数：{this.state.corr_word2sub}</Text>
+          
           {/* <Text>礼物：{corr[1]}</Text>
           <Text>弹幕：{corr[2]}</Text> */}
           </View>
+
+<View className="similarOuter">
+<View className="similarInner">
+<Text>词激活数与订阅增量的相关系数：{this.state.corr_word2sub}</Text>
+</View>
+</View>
+
+
+
 {/* <View
         style={{
           flex: 1,
