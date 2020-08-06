@@ -186,8 +186,7 @@ export default class HotWordMatch extends Component {
   }
 
   shaixuan(){
-    
-    if(this.state.date_selected!="" && this.state.currentwordname!="监听词" ){
+    if(this.state.date_selected!="日期" && this.state.currentwordname!="监听词" ){
       let args = [] 
     args[0] = {};
     args[0].url = myurl+'shaixuan';
@@ -210,6 +209,9 @@ export default class HotWordMatch extends Component {
           console.log('post失败')
           console.log(err.message);
         });
+    }else{
+      Tip.show(' 请选择监听词和日期~')
+      return 0
     }
     
   }
@@ -257,8 +259,6 @@ export default class HotWordMatch extends Component {
               this.setState({
                 date_selected:date
               })
-              // console.log(date)
-              // console.log('时间选择了！')
             }}
           >
           </Datepicker>
