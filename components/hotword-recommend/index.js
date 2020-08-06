@@ -210,7 +210,7 @@ export default class HotWordRecommend extends Component {
 <View className="inputcomb">
 <Icon type='plus-circle-o' tintColor='#fff' size={30} style={{marginRight:"10px" }}></Icon>
 <Input 
-style={{borderRadius: 11,width:"230px"}}
+style={{borderRadius: 11,width:"210px"}}
 value={this.state.hotwordAddedName} placeholder='    加入热词' onChange={(value) => {
               this.setState({
                 hotwordAddedName: value
