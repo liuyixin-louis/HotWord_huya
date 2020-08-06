@@ -176,8 +176,10 @@ export default class HotWordMatch extends Component {
   }
 
   addHotWord(){
+    
     // console.log()
     // console.log(this.props)
+
     let streamerRoomId = this.props.info.streamerRoomId
     let name = this.state.name
     let args = [] 
