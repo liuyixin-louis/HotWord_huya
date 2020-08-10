@@ -286,7 +286,7 @@ value={this.state.hotwordAddedName} placeholder='    加入热词' onChange={(va
 
 <View className="RecommendedrOuter">
 <View className="RecommendedrInner">
-<View><Text>{
+<View><Text className="wordBox1">{
                     this.props.recommendWords.map((item, index) => {
                         return item+";"
                     })

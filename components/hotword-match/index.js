@@ -470,7 +470,7 @@ return nowDate;
 
 <View className="similarOuter">
 <View className="similarInner">
-<Text>词激活数&订阅增量：{this.state.corr_word2sub}</Text>
+<Text className="similarText">词激活数&订阅增量：{this.state.corr_word2sub}</Text>
 </View>
 </View>
 

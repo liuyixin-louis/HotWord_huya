@@ -71,6 +71,10 @@ width: 100%;
 
 
 .wordBox{
-  background:#FAE6B3;
+  background:	#FFB6C1;
   border-radius: 20px;
+}
+
+.wordBox1{
+  background:	#F5F5F5;
 }

@@ -320,15 +320,15 @@ updateIllegalWordsList(){
         
       )
       
-    if(this.state.illegalWordsList!=[]){
+    if(this.state.illegalWordsList.length!=0){
       this.setState({
           comment:'目前表现情况：良好，请注意规范语言行为噢~',
           commentColor:"#FFA500"
       })
       }else{
         this.setState({
-          comment:'目前表现的很优秀噢，没有任何语言不规范行为~请继续保持',
-          commentColor:"#7CFC00"
+          comment:'目前表现的很优秀噢\n没有任何语言不规范行为~请继续保持',
+          commentColor:"#228B22"
       })
       }
     })
@@ -428,7 +428,7 @@ updateIllegalWordsList(){
   hyExt.logger.info('获取当前主播订阅概况失败，错误信息：' + err.message)
 })
 
-    }, 30000);
+    }, 1000);
   }
   test(){
     // let args = []
@@ -472,7 +472,7 @@ updateIllegalWordsList(){
     setInterval(() => {
       console.log('更新最新数据')
       this.updateData();
-    }, 2000);
+    }, 1000);
   }
 
   render () {

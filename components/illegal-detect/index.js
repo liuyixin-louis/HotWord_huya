@@ -88,7 +88,7 @@ export default class IllegalDetect extends Component {
             <View className="borderWhilteLine">
             {
                     this.props.illegalWordsList.map((item, index) => {
-                        return <Text key={index}>{item}</Text>
+                        return <Text className="weijinci" key={index}>{item}</Text>
                     })
                 }
             </View>
@@ -111,7 +111,7 @@ export default class IllegalDetect extends Component {
 <View className="PingjiaInner">
 {/* <Button type='info' size='sm' disabled> 当前表现情况：{this.state.comment}</Button> 
  */}
- <Text style={{color:this.props.commentColor}}>{
+ <Text  className="comment" style={{color:this.props.commentColor}}>{
  this.props.comment}</Text>
 </View>
 </View>

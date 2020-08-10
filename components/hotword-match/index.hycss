@@ -97,3 +97,8 @@ padding-top: 5px;
   background-image:url(https://picbed-1301760901.cos.ap-guangzhou.myqcloud.com/%E8%99%8E%E7%89%99%E4%BB%941.png) ;
   background:#FAE6B3;
   }
+
+.similarText{
+
+  background:		#FAFAD2;
+}
