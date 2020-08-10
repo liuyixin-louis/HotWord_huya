@@ -40,30 +40,30 @@ export default class HotWordRecommend extends Component {
     super(p)
     this.state = {
         hotwordAddedName:"",
-        recommendWords:[],
+        // recommendWords:[],
         hotwordList:[]
     }
-    this.loadRecommendWords()
+    // this.loadRecommendWords()
   }
 
-  loadRecommendWords(){
-  let args = [];
-  args[0] = {};
-  args[0].url = `${myurl}`+"getRecommendWords";
-  args[0].method = "GET";
-  hyExt
-    .request(args[0])
-    .then((resp) => {
-        console.log('载入推荐词成功')
-        this.setState({
-            recommendWords:resp.data.data
-        })
-    })
-    .catch((err) => {
-      console.log('失败')
-      console.log(err.message);
-    });
-  }
+  // loadRecommendWords(){
+  // let args = [];
+  // args[0] = {};
+  // args[0].url = `${myurl}`+"getRecommendWords";
+  // args[0].method = "GET";
+  // hyExt
+  //   .request(args[0])
+  //   .then((resp) => {
+  //       console.log('载入推荐词成功')
+  //       this.setState({
+  //           recommendWords:resp.data.data
+  //       })
+  //   })
+  //   .catch((err) => {
+  //     console.log('失败')
+  //     console.log(err.message);
+  //   });
+  // }
 
 
   componentDidMount () {
@@ -216,7 +216,7 @@ export default class HotWordRecommend extends Component {
 <View className="inputcomb">
 <Icon type='plus-circle-o' tintColor='#fff' size={30} style={{marginRight:"10px" }}></Icon>
 <Input 
-style={{borderRadius: 11,width:"210px"}}
+style={{borderRadius: 11,width:"300px"}}
 value={this.state.hotwordAddedName} placeholder='    加入热词' onChange={(value) => {
               this.setState({
                 hotwordAddedName: value
@@ -225,7 +225,7 @@ value={this.state.hotwordAddedName} placeholder='    加入热词' onChange={(va
 </View>
 
 <Button
-              style={[componentStyles.spacingH, { borderRadius: 50 }]}
+              style={[componentStyles.spacingH, { borderRadius: 50 ,marginLeft:"15px"}]}
               type='warning'
               size='sm'
               textColorInverse
@@ -259,7 +259,12 @@ value={this.state.hotwordAddedName} placeholder='    加入热词' onChange={(va
 <View className="AddedInner">
 <View>{
                     this.props.hotwords.map((item, index) => {
-                        return <Text key={index}>{item}  </Text>
+                        return <View className="wordBox">
+                          <Text 
+                        // style={{color:'#00ff00'}}
+                         key={index}>{item}  </Text>
+
+                          </View>
                     })
                 }
         </View>
@@ -282,7 +287,7 @@ value={this.state.hotwordAddedName} placeholder='    加入热词' onChange={(va
 <View className="RecommendedrOuter">
 <View className="RecommendedrInner">
 <View><Text>{
-                    this.state.recommendWords.map((item, index) => {
+                    this.props.recommendWords.map((item, index) => {
                         return item+";"
                     })
                 }</Text>

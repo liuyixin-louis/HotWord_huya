@@ -85,15 +85,15 @@ padding-top: 5px;
 }
 
 .similarInner{
- height: 200px;
+ height: 245px;
   width: 650px;
     margin-left:25px;
     margin-right:25px;
-  margin-bottom: 40px;
+  margin-bottom: 44px;
   border-radius: 20px;
   justify-content: center;
   align-items: center;
   
-  background-image:url(https://picbed-1301760901.cos.ap-guangzhou.myqcloud.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200807004723.png) ;
+  background-image:url(https://picbed-1301760901.cos.ap-guangzhou.myqcloud.com/%E8%99%8E%E7%89%99%E4%BB%941.png) ;
   background:#FAE6B3;
   }

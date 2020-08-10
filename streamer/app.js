@@ -46,7 +46,8 @@ class App extends Component {
       streamerInfo:{},
       value:1,
       illegalWordsList:[],
-      word_data : []
+      word_data : [],
+      recommendWords:[]
     }
   }
 
@@ -60,6 +61,10 @@ class App extends Component {
 
     // 语音监听
     this.testOnSpeechRecognition()
+
+
+    // 数据实时更新
+    this.realTimeUpdated()
 
     
 
@@ -165,6 +170,11 @@ class App extends Component {
 
     // 更新违禁词
     this.updateIllegalWordsList()
+
+    // 更新推荐词
+    this.updateRecommendWords()
+
+
   }
 
 
@@ -183,7 +193,7 @@ class App extends Component {
     });
 
     // 更新数据
-    this.updateData()
+    // this.updateData()
 
   }
 
@@ -271,6 +281,25 @@ class App extends Component {
     });
   }
 
+  updateRecommendWords(){
+    let args = [];
+    args[0] = {};
+    args[0].url = `${myurl}`+"getRecommendWords";
+    args[0].method = "GET";
+    hyExt
+      .request(args[0])
+      .then((resp) => {
+          console.log('载入推荐词成功')
+          this.setState({
+              recommendWords:resp.data.data
+          })
+      })
+      .catch((err) => {
+        console.log('失败')
+        console.log(err.message);
+      });
+    }
+
 updateIllegalWordsList(){
     let args = [];
   args[0] = {};
@@ -286,12 +315,28 @@ updateIllegalWordsList(){
         {
           illegalWordsList:resp.data.data
         }
+        
       )
+      
+    if(this.state.illegalWordsList!=[]){
+      this.setState({
+          comment:'目前表现情况：良好，请注意规范语言行为噢~',
+          commentColor:"#FFA500"
+      })
+      }else{
+        this.setState({
+          comment:'目前表现的很优秀噢，没有任何语言不规范行为~请继续保持',
+          commentColor:"#7CFC00"
+      })
+      }
     })
     .catch((err) => {
       console.log('失败')
       console.log(err.message);
     });
+
+
+
   }
   
 
@@ -381,7 +426,7 @@ updateIllegalWordsList(){
   hyExt.logger.info('获取当前主播订阅概况失败，错误信息：' + err.message)
 })
 
-    }, 2000);
+    }, 30000);
   }
   test(){
     // let args = []
@@ -420,6 +465,14 @@ updateIllegalWordsList(){
     // this.updatesub()
   }
 
+
+  realTimeUpdated(){
+    setInterval(() => {
+      console.log('更新最新数据')
+      this.updateData();
+    }, 2000);
+  }
+
   render () {
     const { funcIndex, funcList,funcName,showList } = this.state;
 
@@ -455,7 +508,7 @@ updateIllegalWordsList(){
             <Text>asdasd</Text>
           </View> */}
       <HotWordMatch word_data = {this.state.word_data} hotwords={this.state.hotwords} info={this.state.streamerInfo} display={showList[0]} ></HotWordMatch>
-      <HotWordRecommend update={this.updateData} hotwords={this.state.hotwords} info={this.state.streamerInfo} display={showList[1]}></HotWordRecommend>
+      <HotWordRecommend recommendWords={this.state.recommendWords} update={this.updateData} hotwords={this.state.hotwords} info={this.state.streamerInfo} display={showList[1]}></HotWordRecommend>
       <IllegalDetect illegalWordsList={this.state.illegalWordsList} info={this.state.streamerInfo} display={showList[2]}></IllegalDetect>
       {/* <Button onPress={() => { this.test() }} ></Button> */}
       <Tab

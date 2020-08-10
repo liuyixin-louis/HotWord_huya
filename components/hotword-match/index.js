@@ -71,14 +71,16 @@ export default class HotWordMatch extends Component {
     this.state = {
       currentwordIndex: 0,
       wordList: this.props.word_data,
-      currentwordname:"监听词",
-      date_selected:"日期",
+      currentwordname:'监听词' ,
+      date_selected:this.getToday(),
       word_selected:"",
       zhubo_id:"",
       corr:[0,0,0],
       plot_word:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
       plot_sub:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-      corr_word2sub:0
+      corr_word2sub:0,
+      firstWord:"",
+      lock_Bind:true 
     }
     
   }
@@ -142,6 +144,11 @@ export default class HotWordMatch extends Component {
   componentDidMount () {
 
     const {currentwordIndex} = this.state
+
+
+    setInterval(()=>{
+      this.get_firstWord();
+    },1000)
     
     // setTimeout(() => {
     //   this.picker1 && this.picker1.open().then(() => {
@@ -200,8 +207,38 @@ export default class HotWordMatch extends Component {
       
   }
 
-  shaixuan(){
-    if(this.state.date_selected!="日期" && this.state.currentwordname!="监听词" ){
+  getToday(){
+    // 获取当前日期
+var date = new Date();
+
+// 获取当前月份
+var nowMonth = date.getMonth() + 1;
+
+// 获取当前是几号
+var strDate = date.getDate();
+
+// 添加分隔符“-”
+var seperator = "-";
+
+// 对月份进行处理，1-9月在前面添加一个“0”
+if (nowMonth >= 1 && nowMonth <= 9) {
+   nowMonth = "0" + nowMonth;
+}
+
+// 对月份进行处理，1-9号在前面添加一个“0”
+if (strDate >= 0 && strDate <= 9) {
+   strDate = "0" + strDate;
+}
+
+// 最后拼接字符串，得到一个格式为(yyyy-MM-dd)的日期
+var nowDate = date.getFullYear() + seperator + nowMonth + seperator + strDate;
+
+return nowDate;
+  }
+
+
+  update_plotData(){
+    setInterval(()=>{
       let args = [] 
     args[0] = {};
     args[0].url = myurl+'shaixuan';
@@ -224,12 +261,58 @@ export default class HotWordMatch extends Component {
           console.log('post失败')
           console.log(err.message);
         });
+    },1000)
+  }
+
+
+  shaixuan(){
+    console.log('测试123')
+    console.log(this.state.lock_Bind)
+    if(this.state.currentwordname=="监听词" ){
+      Tip.show('请选择特定的监听词！')
+      return 0
+      
+    }else if ( this.state.lock_Bind ){
+      Tip.show('绑定热词成功！监听中...')
+      this.setState({
+        lock_Bind:false
+      });
+      this.update_plotData();
     }else{
-      Tip.show('请选择特定的监听词和日期！')
+      Tip.show('切换绑定成功!')
       return 0
     }
     
   }
+
+
+  
+  get_firstWord(){
+    let args = [];
+  args[0] = {};
+  args[0].url = myurl+"getHotWords/"+this.props.info.streamerRoomId;
+  args[0].method = "GET";
+  hyExt
+    .request(args[0])
+    .then((resp) => {
+      console.log('成功更新热词列表，获取第一个词')
+      console.log(resp.data.data);
+      if (resp.data.data[0] && this.state.currentwordname=="监听词"){
+        this.setState(
+          {
+            firstWord:resp.data.data[0],
+            currentwordname:resp.data.data[0]
+          }
+        )
+      }
+      
+    })
+    .catch((err) => {
+      console.log('失败')
+      console.log(err.message);
+    });
+  }
+
 
   render () {
     const { corr } = this.state
@@ -242,7 +325,7 @@ export default class HotWordMatch extends Component {
             
           <Button onPress={() => { this.BottomModal.open() }} type="primary" size='sm'
           // style={[componentStyles.spacingH, componentStyles.spacingV]}
-          style={[ { borderRadius: 50,marginLeft:"15px" }]}
+          style={[ { borderRadius: 50,marginLeft:"5px" }]}
           >
           <Text style={{color:"#000000"}}>{this.state.date_selected}</Text>
           <Icon type='angle-down' tintColor='#fff'></Icon>
@@ -257,13 +340,19 @@ export default class HotWordMatch extends Component {
               this.btnEl = c
             }}
             onPress={() => {
-              this.open(this.btnEl, this.dropdown, {
-                xKey: 'offsetX',
-                yKey: 'offsetY'
-              })
-            }}>
+              if(this.props.hotwords.length!=0){
+                this.open(this.btnEl, this.dropdown, {
+                  xKey: 'offsetX',
+                  yKey: 'offsetY'
+                })
+              }else{
+                Tip.show('暂无热词！快去热词管理界面添加吧~')
+              }
+            }
+
+            }>
               
-          <Text style={{color:"#000000"}}>{this.state.currentwordname}</Text>
+          <Text style={{color:"#000000"}} > {this.state.currentwordname} </Text>
           <Icon type='angle-down' tintColor='#fff'></Icon>
           </Button>
           
@@ -278,7 +367,7 @@ export default class HotWordMatch extends Component {
               }}
               >
               <Icon type='search' tintColor='#fff'></Icon>
-              <Text style={{color:"#fff"}}>         查询          </Text>
+              <Text style={{color:"#fff"}}>         绑定          </Text>
               
             </Button>
 
@@ -352,7 +441,7 @@ export default class HotWordMatch extends Component {
             </View>
         </View> */}
         
-        <ReactEcharts  option={this.getOption()} theme="Imooc"  style={{height:'260px',marginLeft:"20px",marginRight:"20px",marginTop:"0px"}}/>
+        <ReactEcharts  option={this.getOption()} theme="Imooc"  style={{height:'320px',marginLeft:"20px",marginRight:"20px",marginTop:"0px"}}/>
 
 
         <View className="plotLineChart">
@@ -381,7 +470,7 @@ export default class HotWordMatch extends Component {
 
 <View className="similarOuter">
 <View className="similarInner">
-<Text>词激活数与订阅增量的相关系数：{this.state.corr_word2sub}</Text>
+<Text>词激活数&订阅增量：{this.state.corr_word2sub}</Text>
 </View>
 </View>
 

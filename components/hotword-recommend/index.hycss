@@ -41,12 +41,12 @@ width: 100%;
   width: 650px;
     margin-left:25px;
     margin-right:25px;
-  margin-bottom: 40px;
+  margin-bottom: 24px;
   border-radius: 20px;
   justify-content: center;
   align-items: center;
   
-  background-image:url(https://picbed-1301760901.cos.ap-guangzhou.myqcloud.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200807021635.png) ;
+  background-image:url(https://picbed-1301760901.cos.ap-guangzhou.myqcloud.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200810231631.png) ;
   background:#FAE6B3;
   }
 
@@ -56,15 +56,21 @@ width: 100%;
 }
 
 .RecommendedrInner{
- height: 200px;
+ height: 242px;
   width: 650px;
     margin-left:25px;
     margin-right:25px;
-  margin-bottom: 40px;
+  margin-bottom: 43px;
   border-radius: 20px;
   justify-content: center;
   align-items: center;
   
-  background-image:url(https://picbed-1301760901.cos.ap-guangzhou.myqcloud.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200807022552.png) ;
+  background-image:url(https://picbed-1301760901.cos.ap-guangzhou.myqcloud.com/%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20200810232221.png) ;
   background:#FAE6B3;
   }
+
+
+.wordBox{
+  background:#FAE6B3;
+  border-radius: 20px;
+}

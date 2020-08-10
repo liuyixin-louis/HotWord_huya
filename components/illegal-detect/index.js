@@ -33,7 +33,7 @@ export default class IllegalDetect extends Component {
   constructor (p) {
     super(p)
     this.state = {
-        comment:"优秀"
+        comment:""
     }
   }
 
@@ -42,120 +42,20 @@ export default class IllegalDetect extends Component {
   }
 
   computeComment(){
+    console.log('违规词列表')
+    console.log(this.state.illegalWordsList)
       if(this.state.illegalWordsList!=[]){
-    //     var l = this.props.illegalWordsList;
-    //     var score = 0;
-    //   for(j = 0; j < l.length; j++) {
-    //   if (l[j].includes('99')){
-    //       score = 1;
-    //       break;
-    //   }
-    //   }
-    //   var newcomment = score==1?'良好':'优秀';
       this.setState({
-          comment:'良好'
+          comment:'目前表现情况：良好，请注意规范语言行为噢~',
+          commentColor:"#FFA500"
+      })
+      }else{
+        this.setState({
+          comment:'目前表现的很优秀噢，没有任何语言不规范行为~请继续保持',
+          commentColor:"#7CFC00"
       })
       }
-     
   }
-
-
-//   getOption2 =()=> {
-//     let option = {
-//       series: [
-//         {
-//        type: 'wordCloud',
-//             gridSize: 2,
-//             sizeRange: [12, 50],
-//             rotationRange: [-90, 90],
-//             shape: 'pentagon',
-//             textStyle: {
-//                 normal: {
-//                     color: function () {
-//                         return 'rgb(' + [
-//                                 Math.round(Math.random() * 255),
-//                                 Math.round(Math.random() * 255),
-//                                 Math.round(Math.random() * 255)
-//                             ].join(',') + ')';
-//                     }
-//                 },
-//                 emphasis: {
-//                     shadowBlur: 10,
-//                     shadowColor: '#333'
-//                 }
-//             },
-//             data: [
-//                 {
-//                     name: 'Sam S Club',
-//                     value: 10000,
-//                 }, {
-//                     name: 'Macys',
-//                     value: 6181
-//                 }, {
-//                     name: 'Amy Schumer',
-//                     value: 4386
-//                 }, {
-//                     name: 'Jurassic World',
-//                     value: 4055
-//                 }, {
-//                     name: 'Charter Communications',
-//                     value: 2467
-//                 }, {
-//                     name: 'Chick Fil A',
-//                     value: 2244
-//                 }, {
-//                     name: 'Planet Fitness',
-//                     value: 1898
-//                 }, {
-//                     name: 'Pitch Perfect',
-//                     value: 1484
-//                 }, {
-//                     name: 'Express',
-//                     value: 1112
-//                 }, {
-//                     name: 'Home',
-//                     value: 965
-//                 }, {
-//                     name: 'Johnny Depp',
-//                     value: 847
-//                 }, {
-//                     name: 'Lena Dunham',
-//                     value: 582
-//                 }, {
-//                     name: 'Lewis Hamilton',
-//                     value: 555
-//                 }, {
-//                     name: 'KXAN',
-//                     value: 550
-//                 }, {
-//                     name: 'Mary Ellen Mark',
-//                     value: 462
-//                 }, {
-//                     name: 'Farrah Abraham',
-//                     value: 366
-//                 }, {
-//                     name: 'Rita Ora',
-//                     value: 360
-//                 }, {
-//                     name: 'Serena Williams',
-//                     value: 282
-//                 }, {
-//                     name: 'NCAA baseball tournament',
-//                     value: 273
-//                 }, {
-//                     name: 'Point' ,
-//                     value: 273
-//                 }, {
-//                     name: 'Point Break',
-//                     value: 265
-//                 }]
-//         }
-//         ]
-      
-//     }
-//    return option
-//   }
-
 
   render () {
     if (this.props.display){
@@ -165,7 +65,7 @@ export default class IllegalDetect extends Component {
               <View className = "header" style={{}}>
               <Button onPress={() => {
               Tip.show('(╥﹏╥)o对不起，暂未开放主播端查看系统预设违规词，\n如需了解请咨询客服邮箱zxcxzcz@qq.com', 5000,  true,'center')
-            }} type="primary" size="sm" textColorInverse style={[ { borderRadius: 50,marginRight:"5px" }]}>           查看系统后台预设违规词列表         </Button>
+            }} type="primary" size="sm" textColorInverse style={[ { borderRadius: 50,marginRight:"5px" }]}>              查看系统后台预设违规词列表                         </Button>
 <Icon type='question-circle' tintColor='#fff' size={30} style={{marginRight:"10px" }}></Icon>
 
                 </View>
@@ -211,7 +111,7 @@ export default class IllegalDetect extends Component {
 <View className="PingjiaInner">
 {/* <Button type='info' size='sm' disabled> 当前表现情况：{this.state.comment}</Button> 
  */}
- <Text style={{color:"#FF8C00"}}>当前表现情况：{
+ <Text style={{color:this.state.commentColor}}>{
  this.state.comment}</Text>
 </View>
 </View>
