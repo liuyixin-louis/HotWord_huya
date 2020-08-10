@@ -47,7 +47,9 @@ class App extends Component {
       value:1,
       illegalWordsList:[],
       word_data : [],
-      recommendWords:[]
+      recommendWords:[],
+      comment:"",
+      commentColor:""
     }
   }
 
@@ -509,7 +511,7 @@ updateIllegalWordsList(){
           </View> */}
       <HotWordMatch word_data = {this.state.word_data} hotwords={this.state.hotwords} info={this.state.streamerInfo} display={showList[0]} ></HotWordMatch>
       <HotWordRecommend recommendWords={this.state.recommendWords} update={this.updateData} hotwords={this.state.hotwords} info={this.state.streamerInfo} display={showList[1]}></HotWordRecommend>
-      <IllegalDetect illegalWordsList={this.state.illegalWordsList} info={this.state.streamerInfo} display={showList[2]}></IllegalDetect>
+      <IllegalDetect comment={this.state.comment} commentColor={this.state.commentColor} illegalWordsList={this.state.illegalWordsList} info={this.state.streamerInfo} display={showList[2]}></IllegalDetect>
       {/* <Button onPress={() => { this.test() }} ></Button> */}
       <Tab
           value={this.state.value}

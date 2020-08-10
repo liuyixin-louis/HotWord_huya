@@ -111,8 +111,8 @@ export default class IllegalDetect extends Component {
 <View className="PingjiaInner">
 {/* <Button type='info' size='sm' disabled> 当前表现情况：{this.state.comment}</Button> 
  */}
- <Text style={{color:this.state.commentColor}}>{
- this.state.comment}</Text>
+ <Text style={{color:this.props.commentColor}}>{
+ this.props.comment}</Text>
 </View>
 </View>
 
